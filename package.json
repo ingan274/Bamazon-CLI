@@ -1,0 +1,28 @@
+{
+  "name": "bamazon-cli",
+  "version": "1.0.0",
+  "description": "The app will take in orders from customers and deplete stock from the store's inventory. As a bonus, this program can track product sales across your store's departments and then provide a summary of the highest-grossing departments in the store",
+  "main": "bamazonCustomer.js",
+  "dependencies": {
+    "inquirer": "^7.0.0",
+    "mysql2": "^1.6.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ingan274/Bamazon-CLI.git"
+  },
+  "keywords": [
+    "Node",
+    "MySQL"
+  ],
+  "author": "Isabel Ngan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ingan274/Bamazon-CLI/issues"
+  },
+  "homepage": "https://github.com/ingan274/Bamazon-CLI#readme"
+}

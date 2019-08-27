@@ -1,4 +1,5 @@
-var mysql = require("mysql");
+var mysql = require("mysql2");
+var inquirer = require('inquirer');
 
 var connection = mysql.createConnection({ 
   host: "localhost", 
@@ -6,11 +7,4 @@ var connection = mysql.createConnection({
   user: "root",
   password: "",
   database: "bamazon"
-});
-
-// conncting to your sql, it executes when the connection has occured
-connection.connect(function(err) {
-  if (err) throw err;
-  console.log("connected as id " + connection.threadId);
-  connection.end();
 });
