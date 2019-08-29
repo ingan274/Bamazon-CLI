@@ -4,7 +4,10 @@
   "description": "The app will take in orders from customers and deplete stock from the store's inventory. As a bonus, this program can track product sales across your store's departments and then provide a summary of the highest-grossing departments in the store",
   "main": "bamazonCustomer.js",
   "dependencies": {
+    "chalk": "^2.4.2",
+    "cli-table": "^0.3.1",
     "inquirer": "^7.0.0",
+    "inquirer-maxlength-input-prompt": "^1.0.0",
     "mysql2": "^1.6.5"
   },
   "devDependencies": {},
