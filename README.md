@@ -37,6 +37,7 @@ You can also add a new department to keep track of. Simply choose "Create New De
 See the Supervisor view (in tandem with the Customer and Manager views) in action here. (Video file is also in this repo under assets/.)
 
 Happy shopping!
+<img href="https://media.giphy.com/media/Ejn6xH5mnmtMI/source.gif">
 
 ###Areas for further development
 * Restart main menu after ending interaction as Customer, Manager or Supervisor
