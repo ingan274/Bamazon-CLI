@@ -44,3 +44,5 @@ Happy shopping!
 * Restart main menu after ending interaction as Customer, Manager or Supervisor
 * Make it easier for Customer to quit at any point of the transaction
 * Manager should not be able to add a product with a department name that Supervisor has not already created
+
+#### Week 12 assigment for the June 2019 cohort of UCLA Boot Camp. Built using JavaScript, Node, Inquirer, MySQL.
