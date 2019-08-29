@@ -37,9 +37,9 @@ You can also add a new department to keep track of. Simply choose "Create New De
 See the Supervisor view (in tandem with the Customer and Manager views) in action here. (Video file is also in this repo under assets/.)
 
 Happy shopping!
-<img href="https://media.giphy.com/media/Ejn6xH5mnmtMI/source.gif">
+<img src="https://media.giphy.com/media/Ejn6xH5mnmtMI/source.gif">
 
-###Areas for further development
+### Areas for further development
 * Restart main menu after ending interaction as Customer, Manager or Supervisor
 * Make it easier for Customer to quit at any point of the transaction
 * Manager should not be able to add a product with a department name that Supervisor has not already created
