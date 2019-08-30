@@ -5,6 +5,7 @@ var runCustomerView = require("./bamazonCustomer");
 var runManagerView = require("./bamazonManager");
 var runSupervisorView = require("./bamazonSupervisor");
 
+mainMenu();
 function mainMenu() {
     console.log(chalk.blueBright.bold("\n  Welcome to Bamazon!  \n"));
     inquirer.prompt([
@@ -33,5 +34,3 @@ function mainMenu() {
         };
     })
 }
-
-mainMenu();

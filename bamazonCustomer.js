@@ -17,6 +17,7 @@ function runCustomerView() {
     'SELECT * FROM products',
     function (err, results) {
       // console.table(results); 
+      console.log(chalk.bgMagenta.bold.whiteBright("\n  Shop Away!!  \n"));
       var table = new Table({ head: [chalk.blueBright("Item ID"), chalk.magentaBright("Product Name"), chalk.magentaBright("Price")] });
       console.log(chalk.whiteBright.bold("\nWelcome to Bamazon"))
       numberOfItem = results.length;
@@ -32,9 +33,7 @@ function runCustomerView() {
       console.log("\n" + chalk.whiteBright(table.toString()) + "\n");
 
       initiateCustomer();
-    }
-  );
-
+    });
 
   function initiateCustomer() {
     inquirer.prompt({
@@ -80,8 +79,9 @@ function runCustomerView() {
     }])
       .then((answers) => {
         var productID = answers.itemNumber;
-        var amount = answers.itemAmount;
+        var amount = parseInt(answers.itemAmount);
         var newInventory;
+        var newQuantPruchased;
 
         connection.query(
           'SELECT * FROM products WHERE item_id = ' + productID,
@@ -91,10 +91,12 @@ function runCustomerView() {
             for (var result of results) {
               // console.log(result);
               var quant = parseInt(result.stock_quantity);
+              var purchased = parseInt(result.quantity_purchased);
               var name = result.product_name;
               var costList = parseFloat(result.price);
-              var cost = costList * amount
+              var cost = (costList * amount).toFixed(2)
               newInventory = quant - amount;
+              newQuantPruchased = amount + purchased;
 
               var checkout = new Table({ head: [chalk.magentaBright("Product Name"), chalk.magentaBright("Price"), chalk.magentaBright("Amount"), chalk.blueBright("Total")] });
               var object = [name, costList, amount, cost]
@@ -111,14 +113,10 @@ function runCustomerView() {
                 })
                   .then((answers) => {
                     if (answers.checkoutReview) {
+                      updateInventory(newInventory, productID);
+                      updateQuantPurchased(newQuantPruchased, productID);
+                      updateProductSales();
                       console.log("\nSubmission Successful! Your order is being processed.\n")
-                      connection.query(
-                        'UPDATE products SET ? WHERE item_id = ' + productID,
-                        { stock_quantity: newInventory },
-                        function (err, results) {
-                          if (err) throw err;
-                          initiateCustomer();
-                        });
                     } else if (!answers.checkoutReview) {
                       console.log("Your Cart is now empty.")
                       initiateCustomer();
@@ -128,7 +126,32 @@ function runCustomerView() {
             };
           });
       });
+
+    function updateInventory(newInventory, productID) {
+      connection.query(
+        'UPDATE products SET ? WHERE item_id = ' + productID,
+        { stock_quantity: newInventory },
+        function (err, results) {
+          if (err) throw err;
+        });
+    }
+
+    function updateQuantPurchased(newQuantPruchased, productID) {
+      connection.query(
+        'UPDATE products SET ? WHERE item_id = ' + productID,
+        { quantity_purchased: newQuantPruchased },
+        function (err, results) {
+          if (err) throw err;
+        });
+    }
+    function updateProductSales() {
+      connection.query(
+        'UPDATE products SET product_sales = quantity_purchased * price',
+        function (err, results) {
+          if (err) throw err;
+          initiateCustomer();
+        });
+    }
   }
 }
-
-module.exports = runCustomerView;
+  module.exports = runCustomerView;

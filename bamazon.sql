@@ -44,3 +44,8 @@ VALUES
 
 ALTER TABLE products
 ADD COLUMN product_sales DECIMAL(10,2) NOT NULL;
+
+ALTER TABLE products
+ADD COLUMN quantity_purchased INTEGER(10) NOT NULL;
+
+UPDATE products SET product_sales = quantity_purchased * price;

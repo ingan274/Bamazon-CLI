@@ -43,7 +43,7 @@ function runManagerView() {
         };
       });
   };
-  initiateManager();
+  
 
   // list every available item: the item IDs, names, prices, and quantities.
   function productSales() {
@@ -62,6 +62,7 @@ function runManagerView() {
 
           table.push(object)
         };
+        console.log(chalk.bgMagenta.bold.whiteBright("\n  Product Sales  \n"));
         console.log("\n" + chalk.whiteBright(table.toString()) + "\n");
         inquirer.prompt({
           type: "confirm",
@@ -83,7 +84,7 @@ function runManagerView() {
   //list all items with an inventory count lower than five.
   function lowInventory() {
     connection.query(
-      'SELECT * FROM products WHERE (stock_quantity) BETWEEN 0 AND 5',
+      'SELECT * FROM products WHERE (stock_quantity) < 5',
       function (err, results) {
         // console.table(results);
         var table = new Table({ head: [chalk.blueBright("Item ID"), chalk.magentaBright("Product Name"), chalk.magentaBright("Price"), chalk.magentaBright("Quantities")] });
@@ -97,6 +98,7 @@ function runManagerView() {
 
           table.push(object)
         };
+        console.log(chalk.bgMagenta.bold.whiteBright("\n  Products with Low Inventory  \n"));
         console.log("\n" + chalk.whiteBright(table.toString()) + "\n");
         inquirer.prompt({
           type: "confirm",
