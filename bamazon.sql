@@ -43,9 +43,9 @@ VALUES
     ("Grocery", 72500);
 
 ALTER TABLE products
-ADD COLUMN product_sales DECIMAL(10,2) NOT NULL;
+ADD COLUMN product_sales DECIMAL(10,2) NOT NULL DEFAULT 0;
 
 ALTER TABLE products
-ADD COLUMN quantity_purchased INTEGER(10) NOT NULL;
+ADD COLUMN quantity_purchased INTEGER(10) NOT NULL DEFAULT 0;
 
 UPDATE products SET product_sales = quantity_purchased * price;
