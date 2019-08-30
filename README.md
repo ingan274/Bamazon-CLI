@@ -14,6 +14,8 @@ Whether you confirm or cancel your order, you'll be asked if you'd like to make 
 
 See the Customer view in action here. (Video file is also in this repo under assets/.)
 
+![](demo/client.gif)
+
 ## Manager View
 As a Manager, you can do one of four things: view products for sale, view low inventory, add to inventory or add a new product.
 
@@ -29,12 +31,16 @@ Select "Quit" if you would like to exit the Manager view.
 
 See the Manager view in action here. (Video file is also in this repo under assets/.)
 
+![](demo/manager.gif)
+
 ## Supervisor View
 Last but not least! The Supervisor view lets you easily keep an eye on sales performance by department. Hit "View Product Sales by Department" to see a table of aggregated product sales for each department, as well as total profit, calculated as product sales minus overhead costs. As customers purchase items, these numbers will be updated.
 
 You can also add a new department to keep track of. Simply choose "Create New Department" and enter the department's name and overhead costs. Note that you cannot create a department that already exists.
 
 See the Supervisor view (in tandem with the Customer and Manager views) in action here. (Video file is also in this repo under assets/.)
+
+![](demo/supervisor.gif)
 
 ### Happy shopping!
 
