@@ -43,7 +43,7 @@ function runManagerView() {
         };
       });
   };
-  
+  initiateManager()
 
   // list every available item: the item IDs, names, prices, and quantities.
   function productSales() {
