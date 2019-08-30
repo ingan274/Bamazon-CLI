@@ -54,7 +54,6 @@ function runSupervisorView() {
         var object = [dept_id, dept_name, overhead, product_sales, total_profit]
         tableSales.push(object)
       }
-
       console.log(chalk.whiteBright(tableSales.toString()) + "\n");
       initiateSupervisor();
     });
@@ -98,10 +97,10 @@ function runSupervisorView() {
         message: "Please Review Update and Confirm Details: \n" + chalk.whiteBright(addingDept.toString() + "\n")
       })
         .then((answers) => {
-          if (answers.checkoutReview) {
+          if (answers.updateReview) {
             createDepartment(userInput.departmentName, userInput.overheadCosts);
             console.log("\nSubmission Successful! Your order is being processed.\n")
-          } else if (!answers.checkoutReview) {
+          } else if (!answers.updateReview) {
             console.log("Your addition has been cancelled.")
             initiateSupervisor();
           };
@@ -118,24 +117,24 @@ function runSupervisorView() {
       function (error, response) {
         if (error) throw error;
         connection.query(
-          'SELECT * FROM products',
+          'SELECT * FROM departments',
           function (err, results) {
-            // console.table(results); 
             console.log(chalk.bgMagenta.bold.whiteBright("\n  Updated List of Departments \n"));
-            var table = new Table({ head: [chalk.blueBright("Item ID"), chalk.magentaBright("Deparment Name"), chalk.magentaBright("Overhead")] });
-            numberOfItem = results.length;
+            var updateDeptTable = new Table({ head: [chalk.blueBright("Item ID"), chalk.magentaBright("Deparment Name"), chalk.magentaBright("Overhead")] });
             for (var line of results) {
               var deptID = line.department_id;
-              var deptName = line.department_id_name;
+              var deptName = line.department_name;
               var deptCosts = line.over_head_costs;
 
               var object = [deptID, deptName, deptCosts]
 
-              table.push(object)
+              updateDeptTable.push(object)
             };
-            console.log("\n" + chalk.whiteBright(table.toString()) + "\n");
+            // console.table(updateDeptTable)
+            console.log(chalk.whiteBright(updateDeptTable.toString()) + "\n");
+            console.log("\nDepartment has been created.\n");
+            initiateSupervisor();
           });
-        console.log("\nDepartment has been created.\n");
       })
   }
 }
