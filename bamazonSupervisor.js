@@ -1,5 +1,7 @@
 var mysql = require("mysql2");
 var inquirer = require('inquirer');
+var MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt');
+inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt);
 var Table = require('cli-table');
 var chalk = require('chalk');
 
@@ -59,7 +61,82 @@ function runSupervisorView() {
   };
 
   function newDepartment() {
+    inquirer.prompt([
+      {
+        name: "departmentName",
+        type: "maxlength-input",
+        message: "Department Name:",
+        validate: function (userInput) {
+          if (userInput.trim()) {
+            return true;
+          }
 
+          return "This field cannot be empty.";
+        },
+        maxLength: 50
+      },
+      {
+        name: "overheadCosts",
+        type: "input",
+        message: "Overhead Costs:",
+        validate: function (userInput) {
+          if (isNaN(userInput)) {
+            return "Please enter a valid number."
+          }
+
+          return true;
+        }
+      }
+    ]).then((userInput) => {
+      var addingDept = new Table({ head: [chalk.magentaBright("Department Name"), chalk.magentaBright("Overhead Cost ($)")] });
+      var object = [userInput.departmentName, userInput.overheadCosts];
+      addingDept.push(object);
+
+      inquirer.prompt({
+        type: "confirm",
+        name: "updateReview",
+        message: "Please Review Update and Confirm Details: \n" + chalk.whiteBright(addingDept.toString() + "\n")
+      })
+        .then((answers) => {
+          if (answers.checkoutReview) {
+            createDepartment(userInput.departmentName, userInput.overheadCosts);
+            console.log("\nSubmission Successful! Your order is being processed.\n")
+          } else if (!answers.checkoutReview) {
+            console.log("Your addition has been cancelled.")
+            initiateSupervisor();
+          };
+        });
+    })
   };
+
+  function createDepartment(departmentName, overheadCosts) {
+    connection.query("INSERT INTO departments SET ?",
+      {
+        department_name: departmentName,
+        over_head_costs: overheadCosts
+      },
+      function (error, response) {
+        if (error) throw error;
+        connection.query(
+          'SELECT * FROM products',
+          function (err, results) {
+            // console.table(results); 
+            console.log(chalk.bgMagenta.bold.whiteBright("\n  Updated List of Departments \n"));
+            var table = new Table({ head: [chalk.blueBright("Item ID"), chalk.magentaBright("Deparment Name"), chalk.magentaBright("Overhead")] });
+            numberOfItem = results.length;
+            for (var line of results) {
+              var deptID = line.department_id;
+              var deptName = line.department_id_name;
+              var deptCosts = line.over_head_costs;
+
+              var object = [deptID, deptName, deptCosts]
+
+              table.push(object)
+            };
+            console.log("\n" + chalk.whiteBright(table.toString()) + "\n");
+          });
+        console.log("\nDepartment has been created.\n");
+      })
+  }
 }
 module.exports = runSupervisorView;
