@@ -5,6 +5,7 @@ CLI "Amazon" storefront,the best place to shop!
 ## How does it work?
 The app starts by running main.js in your command-line interface. You'll be greeted with an option to proceed as a Bamazon Customer, Manager or Supervisor.
 
+###### (If tables look strangley formatted, just widen your terminal window)
 ## Customer View
 As a Customer, you will be shown a table of the current items for sale on Bamazon. You will then be prompted to enter the ID of the item you want, as well as how much of it you want to buy. (There's content validation on this, so don't go trying to buy an item that doesn't exist or entering in an impossible quantity!)
 
