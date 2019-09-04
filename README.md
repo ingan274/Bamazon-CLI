@@ -1,5 +1,5 @@
 # Bamazon-CLI
-CLI "Amazon" storefront,the best place to shop!
+CLI "Amazon" storefront, the best place to shop!
 ###### (Besides actual Amazon)
 
 ## How does it work?
@@ -19,7 +19,7 @@ See the Customer view in action here. (Video file is also in this repo under ass
 
 ## Manager View
 ###### (If tables look strangley formatted, just widen your terminal window)
-As a Manager, you can do one of four things: view products for sale, view low inventory, add to inventory or add a new product.
+As a Manager, you can do one of four things: view products for sale, view low inventory, add to inventory, or add a new product.
 
 Selecting "View Products for Sale" will show you a table of all the current items for sale on Bamazon. Note that, unlike the Customer, the Manager can also see total product sales for a given item.
 
