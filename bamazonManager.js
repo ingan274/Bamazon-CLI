@@ -51,14 +51,16 @@ function runManagerView() {
       'SELECT * FROM products',
       function (err, results) {
         // console.table(results); 
-        var table = new Table({ head: [chalk.blueBright("Item ID"), chalk.magentaBright("Product Name"), chalk.magentaBright("Price"), chalk.magentaBright("Quantities")] });
+        var table = new Table({ head: [chalk.blueBright("Item ID"), chalk.magentaBright("Product Name"), chalk.magentaBright("Price"), chalk.magentaBright("Inventory\nQuantities"), chalk.magentaBright("Purchased\nQuantities"), chalk.magentaBright("Item Sales\n(Total)")] });
         for (var line of results) {
           var itemID = line.item_id;
           var itemName = line.product_name;
           var itemPrice = line.price;
           var itemQuant = line.stock_quantity;
+          var itemsBought = line.quantity_purchased;
+          var itemsSales = line.product_sales;
 
-          var object = [itemID, itemName, itemPrice, itemQuant]
+          var object = [itemID, itemName, itemPrice, itemQuant, itemsBought, itemsSales]
 
           table.push(object)
         };
