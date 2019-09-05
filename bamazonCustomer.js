@@ -17,9 +17,9 @@ function runCustomerView() {
     'SELECT * FROM products',
     function (err, results) {
       // console.table(results); 
-      console.log(chalk.bgMagenta.bold.whiteBright("\n  Shop Away!!  \n"));
       var table = new Table({ head: [chalk.blueBright("Item ID"), chalk.magentaBright("Product Name"), chalk.magentaBright("Price")] });
       console.log(chalk.whiteBright.bold("\nWelcome to Bamazon"))
+      console.log(chalk.bgMagenta.bold.whiteBright("\n  Shop Away!!  \n"));
       numberOfItem = results.length;
       for (var line of results) {
         var itemID = line.item_id;
@@ -43,6 +43,7 @@ function runCustomerView() {
     })
       .then((answers) => {
         if (!answers.confirmBuy) {
+          connection.end();
           console.log("\nSee you next time! Have a Bamazon Day!\n");
           process.exit(0);
           return;

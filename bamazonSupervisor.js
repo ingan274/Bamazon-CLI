@@ -32,6 +32,7 @@ function runSupervisorView() {
             break;
           case 'Exit':
             console.log("\nSee you next time! Have a Bamazon Day!\n");
+            connection.end();
             process.exit(0);
             break;
         };

@@ -38,6 +38,7 @@ function runManagerView() {
             break;
           case 'Exit':
             console.log("\nSee you next time! Have a Bamazon Day!\n");
+            connection.end();
             process.exit(0);
             break;
         };
@@ -77,6 +78,7 @@ function runManagerView() {
               initiateManager();
             } else if (!answers.newSearch) {
               console.log("\nSee you next time! Have a Bamazon Day!\n");
+              connection.end();
               process.exit(0);
             };
           });
@@ -113,6 +115,7 @@ function runManagerView() {
               initiateManager();
             } else if (!answers.moreAction) {
               console.log("\nSee you next time! Have a Bamazon Day!\n");
+              connection.end();
               process.exit(0);
             };
           });
