@@ -61,7 +61,7 @@ function runCustomerView() {
         if (isNaN(input) === false && parseInt(input) <= numberOfItem) {
           return true;
         }
-        console.log("\n Please input a proper Item ID number. Thank you");
+        console.log("\n Please input a proper Item ID number. Thank you.");
         return false;
       }
     },

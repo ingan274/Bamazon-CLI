@@ -141,12 +141,12 @@ function runManagerView() {
         inquirer.prompt([{
           type: "input",
           name: "addInventoryID",
-          message: "Would Item would you like to add? (Enter Item ID Number)",
+          message: "Would Item would you like to add to? (Enter Item ID Number)",
           validate: (input) => {
             if (isNaN(input) === false && parseInt(input) < results.length) {
               return true;
             }
-            console.log("\n Please input a proper Item ID number. Thank you");
+            console.log("\n" + chalk.bgRedBright("Alert:") + " Please input a proper Item ID number. Thank you.");
             return false;
           }
         },
@@ -158,7 +158,7 @@ function runManagerView() {
             if (isNaN(input) === false) {
               return true;
             }
-            console.log("Please input a number. Thank you");
+            console.log(chalk.bgRedBright("Alert") + " Please input a number. Thank you.");
             return false;
 
           }
@@ -208,6 +208,19 @@ function runManagerView() {
       })
   };
 
+
+  // getting departments from Supervisor approved
+  var departments = [];
+  connection.query("SELECT d.department_name FROM departments d;", (err, response) => {
+    department = [];
+    if (err) throw err;
+    // console.log("res", response)
+    for (var depart of response) {
+      // console.log(depart)
+      departments.push(depart.department_name)
+    };
+  })  
+
   //to add a completely new product to the store.
   function addProduct() {
     inquirer.prompt([{
@@ -217,10 +230,10 @@ function runManagerView() {
       maxLength: 100
     },
     {
-      type: "maxlength-input",
+      type: "list",
       name: "addProductDepartment",
       message: "Would Department does this Item call under? (50 characters)",
-      maxLength: 50
+      choices: departments
     },
     {
       type: "input",
