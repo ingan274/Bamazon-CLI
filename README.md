@@ -27,7 +27,7 @@ Selecting "View Low Inventory" will show you a table of all the current items fo
 
 Selecting "Add to Inventory" will prompt you to enter the product ID of the product you would like to update, followed by the number of units you would like to add. The stock quantity of that item will be immediately updated.
 
-Lastly, selecting "Add New Product" will prompt you to enter the name, department, price and stock quantity of the product you would like to add.
+Lastly, selecting "Add New Product" will prompt you to enter the name, department (Limited by what departments are approved by the Supervisor), price and stock quantity of the product you would like to add.
 
 Select "Quit" if you would like to exit the Manager view.
 
@@ -52,6 +52,5 @@ See the Supervisor view (in tandem with the Customer and Manager views) in actio
 ### Areas for further development
 * Restart main menu after ending interaction as Customer, Manager or Supervisor
 * Make it easier for Customer to quit at any point of the transaction
-* Manager should not be able to add a product with a department name that Supervisor has not already created
 
 ##### Week 12 assigment for the June 2019 cohort of UCLA Boot Camp. Built using JavaScript, Node, Inquirer, MySQL.
