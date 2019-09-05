@@ -52,5 +52,6 @@ See the Supervisor view (in tandem with the Customer and Manager views) in actio
 ### Areas for further development
 * Restart main menu after ending interaction as Customer, Manager or Supervisor
 * Make it easier for Customer to quit at any point of the transaction
+* Allow Customer to have the option to buy multiple items at a time
 
 ##### Week 12 assigment for the June 2019 cohort of UCLA Boot Camp. Built using JavaScript, Node, Inquirer, MySQL.
