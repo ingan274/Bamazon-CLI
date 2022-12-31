@@ -7,7 +7,7 @@
     "chalk": "^2.4.2",
     "cli-table": "^0.3.1",
     "inquirer": "^7.0.0",
-    "inquirer-maxlength-input-prompt": "^1.0.0",
+    "inquirer-maxlength-input-prompt": "^1.0.2",
     "mysql2": "^1.6.5"
   },
   "devDependencies": {},
